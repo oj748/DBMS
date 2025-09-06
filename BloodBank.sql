@@ -1,17 +1,19 @@
 CREATE TABLE IF NOT EXISTS BloodBank (
-    D_ID INT, -- donor id not B_ID, B_ID does not exist, ALSO there is no test id, B_spec_no is the primary key
+    Test_ID INT, -- Test_ID not B_ID, B_ID does not exist
     Lab_No INT,
     B_Spec_No INT PRIMARY KEY,
     Blood_Grp VARCHAR(5), -- removed blood_type changed lab_id to be between 1 and 10
     B_Quantity INT,
     B_Date DATE,
+    FOREIGN KEY (Test_ID) REFERENCES ScreeningTest(Test_ID),
     FOREIGN KEY (Lab_No) REFERENCES Laboratory(Lab_No)
 );
+-- DROP TABLE BloodBank;
 
 INSERT INTO BloodBank
-(D_ID, Lab_No, B_Spec_No, Blood_Grp, B_Quantity, B_Date)
+(Test_ID, Lab_No, B_Spec_No, Blood_Grp, B_Quantity, B_Date)
 VALUES
-(1, 10, 101, 'A+', 15, '2025-08-01'),
+(1, 1, 101, 'A+', 15, '2025-08-01'),
 (2, 2, 102, 'A+', 8, '2025-08-02'),
 (3, 3, 103, 'AB+', 27, '2025-08-03'),
 (4, 4, 104, 'O+', 7, '2025-08-04'),
