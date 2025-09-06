@@ -3,7 +3,7 @@ CREATE TABLE BloodBank (
     Test_ID INT,
     Lab_No INT,
     B_Spec_No INT,
-    Blood_Grp VARCHAR(5),
+    Blood_Grp VARCHAR(5), -- removed blood_type changed lab_id to be between 1 and 10
     B_Quantity INT,
     B_Date DATE,
     FOREIGN KEY (Test_ID) REFERENCES ScreeningTest(Test_ID),
@@ -110,7 +110,7 @@ VALUES
 (95, 95, 5, 195, 'AB+', 6, '2025-11-03'),
 (96, 96, 6, 196, 'O+', 10, '2025-11-04'),
 (97, 97, 7, 197, 'A+', 3, '2025-11-05'),
-(98, 98, 8, 198, 'AB+', 'B+', 8, '2025-11-06'),
+(98, 98, 8, 198, 'AB+', 8, '2025-11-06'),
 (99, 99, 9, 199, 'O+', 4, '2025-11-07'),
 (100, 100, 10, 200, 'AB+', 20, '2025-11-08');
 
