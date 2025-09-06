@@ -3,7 +3,7 @@ CREATE TABLE Laboratory (
     Lab_Floor INT 
 );
 
-INSERT INTO Laboratory (Lab_No, B_Spec_No, B_Cost) VALUES
+INSERT INTO Laboratory (Lab_No, Lab_Floor) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
