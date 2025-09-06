@@ -5,6 +5,8 @@ CREATE TABLE RecordingStaff (
     E_Contact VARCHAR(50) -- Blood Bank Manager should supervise recording staff , so foreign key should exist here
 );
 
+-- there should be only 10 managers 100 recording staff members , there cannot be 100 managers
+
 INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact) VALUES
 (1, 'John Smith / Johnny', 'john.smith@email.com, j.smith@work.com', '9876543210,9123456780'),
 (2, 'Emily Johnson', 'emily.j@gmail.com, emily.johnson@work.com', '9988776655'),
