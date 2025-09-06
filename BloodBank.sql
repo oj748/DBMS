@@ -1,5 +1,5 @@
-CREATE TABLE BloodBank (
-    B_ID INT PRIMARY KEY,
+DCREATE TABLE BloodBank (
+    D_ID INT PRIMARY KEY, -- donor id not B_ID, B_ID does not exist
     Test_ID INT,
     Lab_No INT,
     B_Spec_No INT,
@@ -11,7 +11,7 @@ CREATE TABLE BloodBank (
 );
 
 INSERT INTO BloodBank
-(B_ID, Test_ID, Lab_No, B_Spec_No, Blood_Grp, B_Quantity, B_Date)
+(D_ID, Test_ID, Lab_No, B_Spec_No, Blood_Grp, B_Quantity, B_Date)
 VALUES
 (1, 1, 1, 101, 'A+', 15, '2025-08-01'),
 (2, 2, 2, 102, 'A+', 8, '2025-08-02'),
