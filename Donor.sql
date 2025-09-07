@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS Donor (
     D_Email VARCHAR(100) UNIQUE,
     D_Gender CHAR(1),
     D_DOB DATE,
-    D_Age INT,
+    D_Age INT NOT NULL CHECK(D_Age > 18),
     D_Address VARCHAR(200),
     D_Contact VARCHAR(100),
     D_Reg_Date DATE
