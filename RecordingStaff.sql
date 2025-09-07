@@ -10,9 +10,9 @@ CREATE TABLE RecordingStaff (
 INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact, MGR) VALUES
 (1, 'John Smith', 'john.smith@email.com, j.smith@work.com', '9876543210,9123456780', 1),
 (2, 'Emily Johnson', 'emily.j@gmail.com, emily.johnson@work.com', '9988776655', 2),
-(3, 'Michael Brown + Mike B.', 'mikeb@yahoo.com, mbrown@company.com', '8899776655,7766554433', 3),
-(4, 'Sarah Davis (Sr. Nurse)', 'sarahd@hospital.com, s.davis@gmail.com', '9988001122', 4),
-(5, 'David Wilson & Daniel Wilson', 'davidwilson@gmail.com, danwilson@gmail.com', '9112233445,9776655443', 5),
+(3, 'Michael Brown', 'mikeb@yahoo.com, mbrown@company.com', '8899776655,7766554433', 3),
+(4, 'Sarah Davis', 'sarahd@hospital.com, s.davis@gmail.com', '9988001122', 4),
+(5, 'David Wilson', 'davidwilson@gmail.com, danwilson@gmail.com', '9112233445,9776655443', 5),
 (6, 'Laura Martinez', 'laura.martinez@gmail.com, lmartinez@work.com', '9988771122', 6),
 (7, 'Robert Taylor', 'roberttaylor@yahoo.com, r.taylor@work.com', '9123456677', 7),
 (8, 'Sophia Anderson', 'sophia.anderson@gmail.com, s.anderson@company.com', '9988223344,9112233445', 8),
