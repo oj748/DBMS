@@ -29,6 +29,7 @@ SELECT * FROM BloodBank;
 
 -- DDL Command
 ALTER TABLE BloodBank MODIFY B_Quantity DECIMAL(6,2);
+DESCRIBE BloodBank;
 
 -- DML Commands
 SELECT * FROM BloodBank WHERE Blood_Grp = 'A+';
