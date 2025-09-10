@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS BloodBank (
-    Test_ID INT, -- Test_ID not B_ID, B_ID does not exist
+    Test_ID INT, 
     Lab_No INT,
     B_Spec_No INT PRIMARY KEY,
-    Blood_Grp VARCHAR(5), -- removed blood_type changed lab_id to be between 1 and 10
+    Blood_Grp VARCHAR(5),
     B_Quantity INT,
     B_Date DATE,
     FOREIGN KEY (Test_ID) REFERENCES ScreeningTest(Test_ID),
@@ -26,3 +26,16 @@ VALUES
 
 
 SELECT * FROM BloodBank;
+
+-- DDL Command
+ALTER TABLE BloodBank MODIFY B_Quantity DECIMAL(6,2);
+
+-- DML Commands
+SELECT * FROM BloodBank WHERE Blood_Grp = 'A+';
+
+-- DCL Commands
+GRANT DELETE,UPDATE ON BloodBank TO 'LauraMartinez'@'localhost','RobertTaylor'@'localhost';
+
+-- TCL Command
+COMMIT;
+
