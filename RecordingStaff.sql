@@ -1,18 +1,27 @@
-CREATE TABLE RecordingStaff (
+CREATE TABLE RecordingStaff4 (
     Emp_ID INT PRIMARY KEY,
     Emp_Name VARCHAR(100),
     Emp_Email VARCHAR(100) UNIQUE,
     E_Contact VARCHAR(50) ,
-    MGR INT, -- Blood Bank Manager  (MGR) should supervise recording staff , so foreign key should exist here
-    FOREIGN KEY (MGR) REFERENCES BloodBankManager(M_ID)
+    MGR INT, 
+    FOREIGN KEY (MGR) REFERENCES BloodBankManager12 (M_ID)
 );
 
-INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact, MGR) VALUES
-(1, 'John Smith', 'john.smith@email.com, j.smith@work.com', '9876543210,9123456780', 1),
-(2, 'Emily Johnson', 'emily.j@gmail.com, emily.johnson@work.com', '9988776655', 2),
-(3, 'Michael Brown', 'mikeb@yahoo.com, mbrown@company.com', '8899776655,7766554433', 1),
-(4, 'Sarah Davis', 'sarahd@hospital.com, s.davis@gmail.com', '9988001122', 2),
-(5, 'David Wilson', 'davidwilson@gmail.com, danwilson@gmail.com', '9112233445,9776655443', 1),
-(6, 'Laura Martinez', 'laura.martinez@gmail.com, lmartinez@work.com', '9988771122', 2),
-(7, 'Robert Taylor', 'roberttaylor@yahoo.com, r.taylor@work.com', '9123456677', 1);
-SELECT * FROM RecordingStaff;
+INSERT INTO ScreeningTest12 (Test_ID, D_ID, BP, Weight, Platelet, Hemoglobin, Hematocrit, Blood_Grp, Eligible) VALUES
+(1, 1, '120/80', 70.5, '250000', 14.5, 42.0, 'A+', TRUE),
+(1, 1, '120/80', 70.5, '260000', 14.5, 42.0, 'A+', TRUE),
+(2, 2, '118/79', 65.2, '240000', 13.8, 40.5, 'B+', TRUE),
+(3, 3, '122/81', 80.0, '270000', 15.2, 43.0, 'O+', TRUE),
+(3, 3, '122/81', 80.0, '275000', 15.2, 43.0, 'O+', TRUE),
+(4, 4, '115/75', 55.5, '230000', 12.9, 38.0, 'AB+', TRUE),
+(5, 5, '125/85', 72.3, '260000', 14.8, 41.5, 'A-', TRUE),
+(5, 5, '125/85', 72.3, '265000', 14.8, 41.5, 'A-', TRUE),
+(6, 6, '119/78', 68.0, '245000', 13.7, 40.0, 'B-', TRUE),
+(7, 7, '121/80', 75.2, '280000', 15.5, 44.0, 'O-', TRUE),
+(7, 7, '121/80', 75.2, '285000', 15.5, 44.0, 'O-', TRUE),
+(8, 8, '117/76', 62.5, '235000', 13.2, 39.0, 'AB-', TRUE),
+(9, 9, '123/82', 78.0, '270000', 14.9, 42.5, 'A+', TRUE),
+(9, 9, '123/82', 78.0, '275000', 14.9, 42.5, 'A+', TRUE),
+(10, 10, '120/79', 69.5, '250000', 14.1, 41.0, 'B+', TRUE);
+
+SELECT * FROM RecordingStaff12;
