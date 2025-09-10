@@ -8,6 +8,20 @@ CREATE TABLE RecordingStaff (
 );
 
 INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact, MGR) VALUES
+(1, 'JohnSmith', 'j.smith@work.com', '9876543210,915646780', 1),
+(2, 'EmilyJohnson', 'emily.j@gmail.com, john.smith@email.com, @work.com', '9988776655', 2);
+
+SELECT * FROM RecordingStaff; 
+
+-- DDL command 
+TRUNCATE TABLE RecordingStaff; -- Deleting all records from the table as the values were incorrect
+
+SELECT * FROM RecordingStaff;
+
+-- DML commands
+
+-- Inserting correct values
+INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact, MGR) VALUES
 (1, 'John Smith', 'john.smith@email.com, j.smith@work.com', '9876543210,9123456780', 1),
 (2, 'Emily Johnson', 'emily.j@gmail.com, emily.johnson@work.com', '9988776655', 2),
 (3, 'Michael Brown', 'mikeb@yahoo.com, mbrown@company.com', '8899776655,7766554433', 1),
@@ -15,4 +29,13 @@ INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact, MGR) VALUES
 (5, 'David Wilson', 'davidwilson@gmail.com, danwilson@gmail.com', '9112233445,9776655443', 1),
 (6, 'Laura Martinez', 'laura.martinez@gmail.com, lmartinez@work.com', '9988771122', 2),
 (7, 'Robert Taylor', 'roberttaylor@yahoo.com, r.taylor@work.com', '9123456677', 1);
-SELECT * FROM RecordingStaff;
+
+SELECT * FROM RecordingStaff ;
+
+-- DCL Command
+GRANT INSERT on RecordingStaff TO 'RobertTaylor'@'localhost','LauraMartinez'@'localhost';
+REVOKE INSERT ON RecordingStaff FROM 'RobertTaylor'@'localhost','LauraMartinez'@'localhost';
+
+-- TCL command
+COMMIT; -- Saving all the transactions 
+
