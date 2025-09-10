@@ -33,3 +33,21 @@ VALUES
 (14, 'Ava Thompson', 'ava.thompson31@mail.com, athompson31@gmail.com', '9988003344', 'F', '1993-07-05', 30, 'B-', '56 Sky Avenue, Pune', 1, 2),
 (15, 'Ethan Lee', 'ethan.lee32@mail.com, e.lee32@company.com', '9112233445', 'M', '1985-11-12', 38, 'O-', '12 Gate Road, Mumbai', 2, 3);
 SELECT * FROM Patient;
+
+
+-- DDL Command
+
+ALTER TABLE Patient MODIFY P_Age SMALLINT;
+
+-- DML Commands
+
+DELETE FROM Patient WHERE P_ID = 4;
+
+SELECT * FROM Patient;
+
+-- DCL Commands
+
+GRANT UPDATE,DELETE ON Patient TO 'RobertTaylor'@'localhost','LauraMartinez'@'localhost';
+
+-- TCL Commands
+COMMIT;
