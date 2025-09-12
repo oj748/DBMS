@@ -1,4 +1,5 @@
-CREATE TABLE IF NOT EXISTS Donor_1NF (
+-- DDL (Data Definition Language)
+CREATE TABLE Donor (
     D_ID INT,
     D_Name VARCHAR(100) NOT NULL,
     D_Email VARCHAR(100),
@@ -11,7 +12,8 @@ CREATE TABLE IF NOT EXISTS Donor_1NF (
     PRIMARY KEY (D_ID, D_Email, D_Contact) 
 );
 
-INSERT INTO Donor_1NF (D_ID, D_Name, D_Email, D_Gender, D_DOB, D_Age, D_Address, D_Contact, D_Reg_Date) VALUES
+-- DML (Data Manipulation Language)
+INSERT INTO Donor (D_ID, D_Name, D_Email, D_Gender, D_DOB, D_Age, D_Address, D_Contact, D_Reg_Date) VALUES
 (1, 'John Doe', 'john.doe@gmail.com', 'M', '1990-01-15', 33, '123 Elm Street, NY', '9876543210', '2025-01-01'),
 (1, 'John Doe', 'john.doe@gmail.com', 'M', '1990-01-15', 33, '123 Elm Street, NY', '9123456780', '2025-01-01'),
 (1, 'John Doe', 'j.doe@work.com', 'M', '1990-01-15', 33, '123 Elm Street, NY', '9876543210', '2025-01-01'),
@@ -42,7 +44,28 @@ INSERT INTO Donor_1NF (D_ID, D_Name, D_Email, D_Gender, D_DOB, D_Age, D_Address,
 (10, 'Olivia Garcia', 'olivia.garcia@gmail.com', 'F', '1994-06-02', 29, '32 Poplar Street, LA', '9111222333', '2025-01-10'),
 (10, 'Olivia Garcia', 'ogarcia@work.com', 'F', '1994-06-02', 29, '32 Poplar Street, LA', '9988776655', '2025-01-10'),
 (10, 'Olivia Garcia', 'ogarcia@work.com', 'F', '1994-06-02', 29, '32 Poplar Street, LA', '9111222333', '2025-01-10');
-SELECT * FROM Donor_1NF LIMIT 99999;
-SELECT * FROM Donor LIMIT 99999; 
--- DDL Commands
-ALTER TABLE Donor_1NF RENAME TO Donor ;
+
+-- DDL command
+ALTER TABLE Donor ADD D_BloodGroup VARCHAR(5);
+SELECT * FROM Donor LIMIT 99999;
+ALTER TABLE Donor DROP COLUMN D_BloodGroup;
+SELECT * FROM Donor LIMIT 99999;
+
+-- DML command
+UPDATE Donor SET D_Contact = '9000112233' WHERE D_ID = 8 AND D_Email = 'sophia.anderson@gmail.com';
+DELETE FROM Donor WHERE D_ID = 1 AND D_Email = 'j.doe@work.com' AND D_Contact = '9123456780';
+SELECT * FROM Donor LIMIT 99999;
+
+-- 🔹 TCL command
+START TRANSACTION;
+UPDATE Donor SET D_Age = 35 WHERE D_ID = 7;
+SAVEPOINT After_Robert_Age_Update;
+SELECT * FROM Donor LIMIT 99999;
+DELETE FROM Donor WHERE D_ID = 6 AND D_Email = 'lmartinez@work.com';
+SELECT * FROM Donor LIMIT 99999;
+ROLLBACK TO After_Robert_Age_Update;
+SELECT * FROM Donor LIMIT 99999;
+COMMIT;
+
+-- TCL
+GRANT SELECT, UPDATE, DELETE ON Donor TO 'RajeshKumar'@'localhost','AnitaSingh'@'localhost';
