@@ -1,27 +1,63 @@
-CREATE TABLE RecordingStaff4 (
-    Emp_ID INT PRIMARY KEY,
+-- DDL (Data Definition Language)
+CREATE TABLE RecordingStaff (
+    Emp_ID INT,
     Emp_Name VARCHAR(100),
-    Emp_Email VARCHAR(100) UNIQUE,
-    E_Contact VARCHAR(50) ,
+    Emp_Email VARCHAR(100),
+    E_Contact VARCHAR(50),
     MGR INT, 
-    FOREIGN KEY (MGR) REFERENCES BloodBankManager12 (M_ID)
+    PRIMARY KEY (Emp_ID, Emp_Email, E_Contact),
+    FOREIGN KEY (MGR) REFERENCES BloodBankManager(M_ID)
 );
 
-INSERT INTO ScreeningTest12 (Test_ID, D_ID, BP, Weight, Platelet, Hemoglobin, Hematocrit, Blood_Grp, Eligible) VALUES
-(1, 1, '120/80', 70.5, '250000', 14.5, 42.0, 'A+', TRUE),
-(1, 1, '120/80', 70.5, '260000', 14.5, 42.0, 'A+', TRUE),
-(2, 2, '118/79', 65.2, '240000', 13.8, 40.5, 'B+', TRUE),
-(3, 3, '122/81', 80.0, '270000', 15.2, 43.0, 'O+', TRUE),
-(3, 3, '122/81', 80.0, '275000', 15.2, 43.0, 'O+', TRUE),
-(4, 4, '115/75', 55.5, '230000', 12.9, 38.0, 'AB+', TRUE),
-(5, 5, '125/85', 72.3, '260000', 14.8, 41.5, 'A-', TRUE),
-(5, 5, '125/85', 72.3, '265000', 14.8, 41.5, 'A-', TRUE),
-(6, 6, '119/78', 68.0, '245000', 13.7, 40.0, 'B-', TRUE),
-(7, 7, '121/80', 75.2, '280000', 15.5, 44.0, 'O-', TRUE),
-(7, 7, '121/80', 75.2, '285000', 15.5, 44.0, 'O-', TRUE),
-(8, 8, '117/76', 62.5, '235000', 13.2, 39.0, 'AB-', TRUE),
-(9, 9, '123/82', 78.0, '270000', 14.9, 42.5, 'A+', TRUE),
-(9, 9, '123/82', 78.0, '275000', 14.9, 42.5, 'A+', TRUE),
-(10, 10, '120/79', 69.5, '250000', 14.1, 41.0, 'B+', TRUE);
+-- DML COMMANDS 
+INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact, MGR) VALUES
+(1, 'John Smith', 'john.smith@email.com', '9876543210', 1),
+(1, 'John Smith', 'john.smith@email.com', '9123456780', 1),
+(1, 'John Smith', 'j.smith@work.com', '9876543210', 1),
+(1, 'John Smith', 'j.smith@work.com', '9123456780', 1),
+(2, 'Emily Johnson', 'emily.j@gmail.com', '9988776655', 2),
+(2, 'Emily Johnson', 'emily.johnson@work.com', '9988776655', 2),
+(3, 'Michael Brown', 'mikeb@yahoo.com', '8899776655', 1),
+(3, 'Michael Brown', 'mikeb@yahoo.com', '7766554433', 1),
+(3, 'Michael Brown', 'mbrown@company.com', '8899776655', 1),
+(3, 'Michael Brown', 'mbrown@company.com', '7766554433', 1),
+(4, 'Sarah Davis', 'sarahd@hospital.com', '9988001122', 2),
+(4, 'Sarah Davis', 's.davis@gmail.com', '9988001122', 2),
+(5, 'David Wilson', 'davidwilson@gmail.com', '9112233445', 1),
+(5, 'David Wilson', 'davidwilson@gmail.com', '9776655443', 1),
+(5, 'David Wilson', 'danwilson@gmail.com', '9112233445', 1),
+(5, 'David Wilson', 'danwilson@gmail.com', '9776655443', 1),
+(6, 'Laura Martinez', 'laura.martinez@gmail.com', '9988771122', 2),
+(6, 'Laura Martinez', 'lmartinez@work.com', '9988771122', 2),
+(7, 'Robert Taylor', 'roberttaylor@yahoo.com', '9123456677', 1),
+(7, 'Robert Taylor', 'r.taylor@work.com', '9123456677', 1);
+SELECT * FROM RecordingStaff LIMIT 9999;
 
-SELECT * FROM RecordingStaff12;
+-- DDL commands
+ALTER TABLE RecordingStaff ADD Joining_Date DATE; 
+SELECT * FROM RecordingStaff LIMIT 9999;
+ALTER TABLE RecordingStaff DROP COLUMN Joining_Date;
+SELECT * FROM RecordingStaff LIMIT 9999;
+
+-- DML command
+UPDATE RecordingStaff SET E_Contact = '9000000000' WHERE Emp_ID = 2 AND Emp_Email = 'emily.j@gmail.com';
+SELECT * FROM RecordingStaff LIMIT 9999;
+
+-- Delete example: remove one duplicate of John
+DELETE FROM RecordingStaff WHERE Emp_ID = 1 AND Emp_Email = 'j.smith@work.com' AND E_Contact = '9123456780';
+
+-- TCL command
+START TRANSACTION;
+UPDATE RecordingStaff SET MGR = 2 WHERE Emp_ID = 7;
+SAVEPOINT Save_After_Update;
+SELECT * FROM RecordingStaff LIMIT 9999;
+-- Delete Sarah’s Gmail row
+DELETE FROM RecordingStaff WHERE Emp_ID = 4 AND Emp_Email = 's.davis@gmail.com';
+
+-- Rollback to savepoint (undo Sarah’s delete, keep manager update)
+ROLLBACK TO Save_After_Update;
+SELECT * FROM RecordingStaff LIMIT 9999;
+COMMIT;
+
+-- TCL 
+GRANT SELECT, UPDATE, DELETE ON RecordingStaff TO 'RajeshKumar'@'localhost','AnitaSingh'@'localhost';
