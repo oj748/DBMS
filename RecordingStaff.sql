@@ -1,41 +1,63 @@
+-- DDL (Data Definition Language)
 CREATE TABLE RecordingStaff (
-    Emp_ID INT PRIMARY KEY,
+    Emp_ID INT,
     Emp_Name VARCHAR(100),
-    Emp_Email VARCHAR(100) UNIQUE,
-    E_Contact VARCHAR(50) ,
-    MGR INT, -- Blood Bank Manager  (MGR) should supervise recording staff , so foreign key should exist here
+    Emp_Email VARCHAR(100),
+    E_Contact VARCHAR(50),
+    MGR INT, 
+    PRIMARY KEY (Emp_ID, Emp_Email, E_Contact),
     FOREIGN KEY (MGR) REFERENCES BloodBankManager(M_ID)
 );
 
+-- DML COMMANDS 
 INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact, MGR) VALUES
-(1, 'JohnSmith', 'j.smith@work.com', '9876543210,915646780', 1),
-(2, 'EmilyJohnson', 'emily.j@gmail.com, john.smith@email.com, @work.com', '9988776655', 2);
+(1, 'John Smith', 'john.smith@email.com', '9876543210', 1),
+(1, 'John Smith', 'john.smith@email.com', '9123456780', 1),
+(1, 'John Smith', 'j.smith@work.com', '9876543210', 1),
+(1, 'John Smith', 'j.smith@work.com', '9123456780', 1),
+(2, 'Emily Johnson', 'emily.j@gmail.com', '9988776655', 2),
+(2, 'Emily Johnson', 'emily.johnson@work.com', '9988776655', 2),
+(3, 'Michael Brown', 'mikeb@yahoo.com', '8899776655', 1),
+(3, 'Michael Brown', 'mikeb@yahoo.com', '7766554433', 1),
+(3, 'Michael Brown', 'mbrown@company.com', '8899776655', 1),
+(3, 'Michael Brown', 'mbrown@company.com', '7766554433', 1),
+(4, 'Sarah Davis', 'sarahd@hospital.com', '9988001122', 2),
+(4, 'Sarah Davis', 's.davis@gmail.com', '9988001122', 2),
+(5, 'David Wilson', 'davidwilson@gmail.com', '9112233445', 1),
+(5, 'David Wilson', 'davidwilson@gmail.com', '9776655443', 1),
+(5, 'David Wilson', 'danwilson@gmail.com', '9112233445', 1),
+(5, 'David Wilson', 'danwilson@gmail.com', '9776655443', 1),
+(6, 'Laura Martinez', 'laura.martinez@gmail.com', '9988771122', 2),
+(6, 'Laura Martinez', 'lmartinez@work.com', '9988771122', 2),
+(7, 'Robert Taylor', 'roberttaylor@yahoo.com', '9123456677', 1),
+(7, 'Robert Taylor', 'r.taylor@work.com', '9123456677', 1);
+SELECT * FROM RecordingStaff LIMIT 9999;
 
-SELECT * FROM RecordingStaff; 
+-- DDL commands
+ALTER TABLE RecordingStaff ADD Joining_Date DATE; 
+SELECT * FROM RecordingStaff LIMIT 9999;
+ALTER TABLE RecordingStaff DROP COLUMN Joining_Date;
+SELECT * FROM RecordingStaff LIMIT 9999;
 
--- DDL command 
-TRUNCATE TABLE RecordingStaff; -- Deleting all records from the table as the values were incorrect
+-- DML command
+UPDATE RecordingStaff SET E_Contact = '9000000000' WHERE Emp_ID = 2 AND Emp_Email = 'emily.j@gmail.com';
+SELECT * FROM RecordingStaff LIMIT 9999;
 
-SELECT * FROM RecordingStaff;
-
--- DML commands
-
--- Inserting correct values
-INSERT INTO RecordingStaff (Emp_ID, Emp_Name, Emp_Email, E_Contact, MGR) VALUES
-(1, 'John Smith', 'john.smith@email.com, j.smith@work.com', '9876543210,9123456780', 1),
-(2, 'Emily Johnson', 'emily.j@gmail.com, emily.johnson@work.com', '9988776655', 2),
-(3, 'Michael Brown', 'mikeb@yahoo.com, mbrown@company.com', '8899776655,7766554433', 1),
-(4, 'Sarah Davis', 'sarahd@hospital.com, s.davis@gmail.com', '9988001122', 2),
-(5, 'David Wilson', 'davidwilson@gmail.com, danwilson@gmail.com', '9112233445,9776655443', 1),
-(6, 'Laura Martinez', 'laura.martinez@gmail.com, lmartinez@work.com', '9988771122', 2),
-(7, 'Robert Taylor', 'roberttaylor@yahoo.com, r.taylor@work.com', '9123456677', 1);
-
-SELECT * FROM RecordingStaff ;
-
--- DCL Command
-GRANT INSERT on RecordingStaff TO 'RobertTaylor'@'localhost','LauraMartinez'@'localhost';
-REVOKE INSERT ON RecordingStaff FROM 'RobertTaylor'@'localhost','LauraMartinez'@'localhost';
+-- Delete example: remove one duplicate of John
+DELETE FROM RecordingStaff WHERE Emp_ID = 1 AND Emp_Email = 'j.smith@work.com' AND E_Contact = '9123456780';
 
 -- TCL command
-COMMIT; -- Saving all the transactions 
+START TRANSACTION;
+UPDATE RecordingStaff SET MGR = 2 WHERE Emp_ID = 7;
+SAVEPOINT Save_After_Update;
+SELECT * FROM RecordingStaff LIMIT 9999;
+-- Delete Sarah’s Gmail row
+DELETE FROM RecordingStaff WHERE Emp_ID = 4 AND Emp_Email = 's.davis@gmail.com';
 
+-- Rollback to savepoint (undo Sarah’s delete, keep manager update)
+ROLLBACK TO Save_After_Update;
+SELECT * FROM RecordingStaff LIMIT 9999;
+COMMIT;
+
+-- TCL 
+GRANT SELECT, UPDATE, DELETE ON RecordingStaff TO 'RajeshKumar'@'localhost','AnitaSingh'@'localhost';
